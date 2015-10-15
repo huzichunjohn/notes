@@ -1,0 +1,10 @@
+1. install the related package
+apt-get install -y debian-keyring gnupg
+
+2. export keys
+gpg --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 40976EAF437D05B5
+gpg --no-default-keyring -a --export 3B4FE6ACC0B21F32|gpg --no-default-keyring --keyring ~/.gnupg/trustedkeys.gpg --import -
+gpg --no-default-keyring -a --export 40976EAF437D05B5|gpg --no-default-keyring --keyring ~/.gnupg/trustedkeys.gpg --import -
+
+3. start to download
+debmirror mirror --nosource --host=mirrors.163.com --root=/ubuntu --dist=trusty --section=main,multiverse,restricted,universe,main/debian-installer --arch=i386,amd64 --method=http --progress
